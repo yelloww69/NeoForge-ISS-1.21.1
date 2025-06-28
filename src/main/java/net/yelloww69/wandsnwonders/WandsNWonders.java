@@ -13,8 +13,8 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import net.yelloww69.wandsnwonders.item.ModCreativeModeTabs;
-import net.yelloww69.wandsnwonders.item.ModItems;
+import net.yelloww69.wandsnwonders.registries.WNWCreativeModeTabs;
+import net.yelloww69.wandsnwonders.registries.ItemRegistries;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(WandsNWonders.MOD_ID)
@@ -33,9 +33,9 @@ public class WandsNWonders {
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
-        ModCreativeModeTabs.register(modEventBus);
+        WNWCreativeModeTabs.register(modEventBus);
 
-        ModItems.register(modEventBus);
+        ItemRegistries.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -51,7 +51,7 @@ public class WandsNWonders {
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModItems.BASICWAND);
+            event.accept(ItemRegistries.BASICWAND);
         }
 
     }
